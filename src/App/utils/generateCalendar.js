@@ -10,9 +10,13 @@ export function generateCalendar() {
     const datesWeek = [];
     for (let i = 0; i < 52; i++) {
       const date = new Date(startDate.getTime() + (i + j * 7) * day);
+      const month =
+        date.getMonth() < 9
+          ? `0${date.getMonth() + 1}`
+          : `${date.getMonth() + 1}`;
       datesWeek.push({
         dayOfWeek: date.getDay(),
-        date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+        date: `${date.getFullYear()}-${month}-${date.getDate()}`,
         title: false,
       });
     }
