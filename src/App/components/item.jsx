@@ -1,32 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
+import Tooltip from "./tooltip";
 
-const Item = ({ title, date, dayOfWeek, contributions }) => {
+const Item = ({
+  title,
+  date,
+  dayOfWeek,
+  contributions,
+  id,
+  activate,
+  active,
+}) => {
+  const [isHover, setHover] = useState(false);
+
+  const handleActive = (id) => {
+    activate(id);
+  };
+
+  const comparison = active._id === id && active.active;
+
   if (title) {
     const days = ["Пн", "", "Ср", "", "Пт", "", ""];
-    return <span>{days[dayOfWeek]}</span>;
+    return <span className="row-title">{days[dayOfWeek]}</span>;
   }
+
+  const modifiedStyle = (string) => {
+    return comparison
+      ? string + " selected"
+      : isHover
+      ? string + " hover"
+      : string;
+  };
+
+  let style = isHover ? "item hover" : "item";
   if (contributions.hasOwnProperty(date)) {
-    let style;
     if (contributions[date] >= 30) {
-      style = "item large hoverable";
+      // style = isHover ? "item large hover" : "item large";
+      style = modifiedStyle("item large");
     } else if (contributions[date] >= 20) {
-      style = "item big";
+      style = modifiedStyle("item big");
     } else if (contributions[date] >= 10) {
-      style = "item medium";
+      style = modifiedStyle("item medium");
     } else if (contributions[date] >= 1) {
-      style = "item little";
+      style = modifiedStyle("item little");
     }
+
     return (
-      <div className={style}>
-        <div className="tooltip">
-          <span className="tooltiptext">{`${contributions[date]} контрибуций`}</span>
-          <span className="tooltipdate">{`${date}`}</span>
-        </div>
-      </div>
+      <Tooltip
+        date={date}
+        contributions={contributions[date]}
+        active={comparison}
+      >
+        <div
+          className={style}
+          onMouseEnter={() => {
+            setHover(true);
+          }}
+          onMouseLeave={() => {
+            setHover(false);
+          }}
+          onClick={() => handleActive(id)}
+        ></div>
+      </Tooltip>
     );
   }
 
-  return <div className="item"></div>;
+  return (
+    <div
+      className={style}
+      onMouseEnter={() => {
+        setHover(true);
+      }}
+      onMouseLeave={() => {
+        setHover(false);
+      }}
+    ></div>
+  );
 };
 
 export default Item;

@@ -1,12 +1,131 @@
+html {
+  background: #ededed;
+}
+
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
   color: #959494;
+  font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  justify-content: center;
+  display: flex;
+  place-items: center;
+}
+.container {
+  background: #ffffff;
+  width: 1120px;
+  height: 279px;
+
+  display: flex;
+  justify-content: center;
+  place-items: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: inherit;
+  padding-bottom: 5px;
+}
+
+td {
+  padding: 0;
+}
+td .row-title {
+  margin-right: 3px;
+}
+
+.item {
+  background: #ededed;
+  box-sizing: border-box;
+  height: 15px;
+  width: 15px;
+  margin: 1px;
+}
+.item.little {
+  background: #acd5f2;
+}
+.item.medium {
+  background: #7fa8c9;
+}
+.item.big {
+  background: #527ba0;
+}
+.item.large {
+  background: #254e77;
+}
+.item:hover {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #00000080;
+  height: 17px;
+  width: 17px;
+  margin: 0;
+}
+.item.selected {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000e5;
+  height: 17px;
+  width: 17px;
+  margin: 0;
+}
+
+.tooltip {
+  position: relative;
+  /* display: inline-block; */
+  /* border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+  /* visibility: hidden; */
+  width: 160px;
+  height: 42px;
+  padding: 0px;
+  background-color: black;
+  text-align: center;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: -420%;
+
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+
+  /* margin-left: -60px; */
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltiptext p {
+  margin: 5px 0;
+}
+
+.tooltiptext .tooltipdate {
+  color: #7c7c7c;
+  font-size: 10px;
+}
+
+/* .tooltip .selected .tooltiptext {
+  visibility: visible;
+} */
